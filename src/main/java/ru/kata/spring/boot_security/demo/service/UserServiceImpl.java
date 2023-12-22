@@ -79,10 +79,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         Optional<Role> optionalRole = getAllRoles().stream()
                 .filter(role1 -> role1.equals(roleAddUser))
                 .findFirst();
-
         User user = findByUsername(username);
         user.getRoles().clear();
-
         optionalRole.ifPresent(user::addRole);
     }
 

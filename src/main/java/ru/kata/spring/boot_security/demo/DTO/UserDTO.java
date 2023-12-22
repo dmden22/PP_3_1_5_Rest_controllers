@@ -42,8 +42,8 @@ public class UserDTO {
     }
 
     public List<RoleDTO> getRoles() {
-        List<RoleDTO> rolesDTO = new ArrayList<>();
-        rolesDTO = this.roles.stream().map(role -> new ModelMapper().map(role, RoleDTO.class)).collect(Collectors.toList());
+        List<RoleDTO> rolesDTO = new ArrayList<>();//todo: IDE подсказывает (затеняет), = new ArrayList<>() - лишнее
+        rolesDTO = roles.stream().map(role -> new ModelMapper().map(role, RoleDTO.class)).collect(Collectors.toList());//todo: this - не обязательно здесь
         return rolesDTO;
     }
 

@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
-public class RESTController {
+public class RESTController {//todo: camelCase - классы пишутся в этом стиле в Java
 
     private final UserService userService;
     private final ModelMapper modelMapper;
@@ -29,7 +29,6 @@ public class RESTController {
 
     @GetMapping("/all-user")
     public List<UserDTO> getAllUsers() {
-
         return userService.getAllUsers()
                 .stream().map(user -> modelMapper.map(user, UserDTO.class))
                 .collect(Collectors.toList());
@@ -53,7 +52,6 @@ public class RESTController {
         String encodedPassword = new BCryptPasswordEncoder().encode(userDTO.passwordToEncoding());
         user.setPassword(encodedPassword);
         user.setRoles(null);
-
         userService.saveUser(user);
         userDTO.getRoles().stream()
                 .forEach(roleDTO -> userService.addRoleToUser(user.getUsername(), roleDTO.getName()));
@@ -72,7 +70,6 @@ public class RESTController {
             User user = modelMapper.map(userDTO, User.class);
             user.setPassword(userDTO.passwordToEncoding());
             user.setRoles(null);
-
             userService.updateUser(user);
             userDTO.getRoles().stream()
                     .forEach(roleDTO -> userService.addRoleToUser(user.getUsername(), roleDTO.getName()));
