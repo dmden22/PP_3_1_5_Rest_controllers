@@ -1,13 +1,12 @@
-package ru.kata.spring.boot_security.demo.DTO;
+package ru.kata.spring.boot_security.demo.dto;
 
 import org.modelmapper.ModelMapper;
 import ru.kata.spring.boot_security.demo.model.Role;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class UserDTO {
+public class UserDto {
 
     private Long id;
 
@@ -41,9 +40,9 @@ public class UserDTO {
         return this.password;
     }
 
-    public List<RoleDTO> getRoles() {
-        List<RoleDTO> rolesDTO;
-        rolesDTO = roles.stream().map(role -> new ModelMapper().map(role, RoleDTO.class)).collect(Collectors.toList());
+    public List<RoleDto> getRoles() {
+        List<RoleDto> rolesDTO;
+        rolesDTO = roles.stream().map(role -> new ModelMapper().map(role, RoleDto.class)).collect(Collectors.toList());
         return rolesDTO;
     }
 

@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import ru.kata.spring.boot_security.demo.DTO.UserDTO;
+import ru.kata.spring.boot_security.demo.dto.UserDto;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
@@ -28,26 +28,26 @@ public class RestController {
     }
 
     @GetMapping("/all-user")
-    public List<UserDTO> getAllUsers() {
+    public List<UserDto> getAllUsers() {
         return userService.getAllUsers()
-                .stream().map(user -> modelMapper.map(user, UserDTO.class))
+                .stream().map(user -> modelMapper.map(user, UserDto.class))
                 .collect(Collectors.toList());
     }
 
     @GetMapping("/user/{id}")
-    public UserDTO getUser(@PathVariable Long id) {
+    public UserDto getUser(@PathVariable Long id) {
         User user = userService.getUser(id);
-        return modelMapper.map(user, UserDTO.class);
+        return modelMapper.map(user, UserDto.class);
     }
 
     @GetMapping("/user-by-username/{username}")
-    public UserDTO getUserByUsername(@PathVariable String username) {
+    public UserDto getUserByUsername(@PathVariable String username) {
         User user = userService.findByUsername(username);
-        return modelMapper.map(user, UserDTO.class);
+        return modelMapper.map(user, UserDto.class);
     }
 
     @PostMapping("/add-user")
-    public ResponseEntity<HttpStatus> addUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<HttpStatus> addUser(@RequestBody UserDto userDTO) {
         User user = modelMapper.map(userDTO, User.class);
         String encodedPassword = new BCryptPasswordEncoder().encode(userDTO.passwordToEncoding());
         user.setPassword(encodedPassword);
@@ -59,7 +59,7 @@ public class RestController {
     }
 
     @PutMapping("/edit-user")
-    public ResponseEntity<HttpStatus> editUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<HttpStatus> editUser(@RequestBody UserDto userDTO) {
         List<User> listUser = userService.getAllUsers();
         if (listUser.stream()
                 .noneMatch(u ->

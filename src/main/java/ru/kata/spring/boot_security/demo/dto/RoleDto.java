@@ -1,6 +1,6 @@
-package ru.kata.spring.boot_security.demo.DTO;
+package ru.kata.spring.boot_security.demo.dto;
 
-public class RoleDTO {
+public class RoleDto {
 
     String name;
 
