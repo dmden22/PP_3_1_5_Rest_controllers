@@ -13,16 +13,16 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestController
+@org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
-public class RESTController {//todo: camelCase - классы пишутся в этом стиле в Java
+public class RestController {
 
     private final UserService userService;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public RESTController(UserService userService, ModelMapper modelMapper) {
+    public RestController(UserService userService, ModelMapper modelMapper) {
         this.userService = userService;
         this.modelMapper = modelMapper;
     }

@@ -23,7 +23,7 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST//todo: ALL можно заменить?
+    @ManyToMany(cascade = {CascadeType.PERSIST
             , CascadeType.MERGE
             , CascadeType.DETACH
             , CascadeType.REFRESH}
